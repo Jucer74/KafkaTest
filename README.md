@@ -7,22 +7,22 @@ This Exercise uses the [Confluent Kafka Library](https://github.com/confluentinc
 # Producer
 Using the Api-Key File and the global values for users and items, generate 10 random messages to the Kafka broker.
 
-These messages must to have a random numeric Key between 1 to 100 and the message value must be a concatenation  for the random user and item.
+These messages must to have a random numeric Key between 1 to 100 and the message value must be a concatenation for the random user and item.
 
 Example:
 
 ```code
 ...Producer Started...
-Produced event to topic purchases: key = 99  value = awhite-eraser
-Produced event to topic purchases: key = 72  value = rdowney-pencil
-Produced event to topic purchases: key = 53  value = bgriffin-notebook
-Produced event to topic purchases: key = 71  value = awhite-pencil
-Produced event to topic purchases: key = 99  value = jsmith-ruler
-Produced event to topic purchases: key = 11  value = cgarcia-notebook
-Produced event to topic purchases: key = 68  value = mjordan-notebook
-Produced event to topic purchases: key = 76  value = awhite-notebook
-Produced event to topic purchases: key = 17  value = awhite-notebook
-Produced event to topic purchases: key = 74  value = cgarcia-pencil
+Produced event to topic purchases: key = 92 value = bgriffin-notebook
+Produced event to topic purchases: key = 65 value = bgriffin-ruler
+Produced event to topic purchases: key = 55 value = jsmith-ruler
+Produced event to topic purchases: key = 9 value = awhite-pencil
+Produced event to topic purchases: key = 27 value = bgriffin-eraser
+Produced event to topic purchases: key = 21 value = bgriffin-pencil
+Produced event to topic purchases: key = 39 value = rdowney-eraser
+Produced event to topic purchases: key = 68 value = awhite-eraser
+Produced event to topic purchases: key = 33 value = bgriffin-ruler
+Produced event to topic purchases: key = 65 value = cgarcia-ruler
 10 messages were produced to topic purchases
 ...Producer Stoped...
 ```
@@ -70,7 +70,27 @@ using (var p = new ProducerBuilder<Null, string>(conf).Build())
 ```
 
 # Consumer
-Using the Api-Key File consume the messages previously generate by the consumer.
+Using the Api-Key File consume the messages previously generate by the consumer, detecting the duplicate records.
+
+Example:
+
+```code
+...Consumer Started...
+Press Ctrl + C to end.
+Consumed event from topic purchases: key = 92 value = bgriffin-notebook
+Consumed event from topic purchases: key = 65 value = bgriffin-ruler
+Consumed event from topic purchases: key = 55 value = jsmith-ruler
+Consumed event from topic purchases: key = 9 value = awhite-pencil
+Consumed event from topic purchases: key = 27 value = bgriffin-eraser
+Consumed event from topic purchases: key = 21 value = bgriffin-pencil
+Consumed event from topic purchases: key = 39 value = rdowney-eraser
+Consumed event from topic purchases: key = 68 value = awhite-eraser
+Consumed event from topic purchases: key = 33 value = bgriffin-ruler
+Consumed event from topic purchases: key = 65 value = cgarcia-ruler
+The Duplicate Elements are:
+Key= 65
+...Consumer Stoped...
+```
 
 ## Consumer Configuration
 use the bello example to configure the consumer
